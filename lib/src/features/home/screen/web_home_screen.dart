@@ -1,15 +1,16 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:portfolio/src/features/home/widgets/animated_indicator.dart';
 import 'package:portfolio/src/features/home/widgets/terminal.dart';
 import 'package:portfolio/src/settings/theme/settings_controller.dart';
 import 'package:portfolio/src/settings/theme/settings_toggle_view.dart';
+import 'package:url_launcher/url_launcher.dart';
 
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key, required this.controller});
+class WebHomeScreen extends StatelessWidget {
+  const WebHomeScreen({super.key, required this.controller});
 
   final SettingsController controller;
-  static const String routeName = '/';
 
   @override
   Widget build(BuildContext context) {
@@ -33,29 +34,24 @@ class HomeScreen extends StatelessWidget {
                         .copyWith(color: Theme.of(context).colorScheme.primary),
                   ),
                   const SizedBox(width: 15.0),
-                  Flexible(
-                    child: AnimatedTextKit(
-                      isRepeatingAnimation: false,
-                      totalRepeatCount: 1,
-                      animatedTexts: [
-                        TyperAnimatedText(
-                          speed: const Duration(milliseconds: 90),
-                          "Sanskar Shrivastava",
-                          textStyle: Theme.of(context)
-                              .textTheme
-                              .displayLarge!
-                              .copyWith(
-                                color: Theme.of(context).colorScheme.primary,
-                              ),
-                        ),
-                      ],
-                    ),
+                  AnimatedTextKit(
+                    isRepeatingAnimation: false,
+                    totalRepeatCount: 1,
+                    animatedTexts: [
+                      TyperAnimatedText(
+                        speed: const Duration(milliseconds: 90),
+                        "Sanskar Shrivastava",
+                        textStyle:
+                            Theme.of(context).textTheme.displayLarge!.copyWith(
+                                  color: Theme.of(context).colorScheme.primary,
+                                ),
+                      ),
+                    ],
                   ),
                   AnimatedIndicator(
-                      color: Theme.of(context)
-                          .colorScheme
-                          .primary
-                          .withOpacity(.7)),
+                    color:
+                        Theme.of(context).colorScheme.primary.withOpacity(.7),
+                  ),
                 ],
               ),
               SizedBox(height: screenSize.height * 0.1),
@@ -79,7 +75,7 @@ class HomeScreen extends StatelessWidget {
               ),
               Center(
                   child: Container(
-                margin: EdgeInsets.only(top: 10),
+                margin: const EdgeInsets.only(top: 10),
                 height: 8,
                 width: 70,
                 color: Theme.of(context).colorScheme.primary,
@@ -103,12 +99,17 @@ class HomeScreen extends StatelessWidget {
                                 color: Theme.of(context).colorScheme.secondary,
                               ),
                     ),
-                    Text(
-                      "LinkedIn",
-                      style:
-                          Theme.of(context).textTheme.displayMedium!.copyWith(
-                                color: Theme.of(context).colorScheme.secondary,
-                              ),
+                    GestureDetector(
+                      onTap: _launchLinkedInbUrl,
+                      child: Text(
+                        "LinkedIn",
+                        style: Theme.of(context)
+                            .textTheme
+                            .displayMedium!
+                            .copyWith(
+                              color: Theme.of(context).colorScheme.secondary,
+                            ),
+                      ),
                     ),
                     Text(
                       " || ",
@@ -117,12 +118,17 @@ class HomeScreen extends StatelessWidget {
                                 color: Theme.of(context).colorScheme.secondary,
                               ),
                     ),
-                    Text(
-                      "GitHub",
-                      style:
-                          Theme.of(context).textTheme.displayMedium!.copyWith(
-                                color: Theme.of(context).colorScheme.secondary,
-                              ),
+                    GestureDetector(
+                      onTap: _launchGitHubUrl,
+                      child: Text(
+                        "GitHub",
+                        style: Theme.of(context)
+                            .textTheme
+                            .displayMedium!
+                            .copyWith(
+                              color: Theme.of(context).colorScheme.secondary,
+                            ),
+                      ),
                     ),
                   ],
                 ),
@@ -143,5 +149,24 @@ class HomeScreen extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  _launchLinkedInbUrl() async {
+    final Uri url =
+        Uri.parse("https://www.linkedin.com/in/sanskar-shrivastava-757649202");
+    if (await canLaunchUrl(url)) {
+      await launchUrl(url);
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
+
+  _launchGitHubUrl() async {
+    final Uri url = Uri.parse("https://github.com/SanskarSh");
+    if (await canLaunchUrl(url)) {
+      await launchUrl(url);
+    } else {
+      throw 'Could not launch $url';
+    }
   }
 }

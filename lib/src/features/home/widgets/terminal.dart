@@ -9,7 +9,7 @@ class BuildAboutMeTerminal extends StatelessWidget {
   Widget build(BuildContext context) {
     Size screenSize = MediaQuery.of(context).size;
     return Container(
-      height: screenSize.height * 0.7,
+      height: screenSize.height * 0.8,
       // width: screenSize.width * 0.8,
       width: double.maxFinite,
       decoration: BoxDecoration(
@@ -23,25 +23,44 @@ class BuildAboutMeTerminal extends StatelessWidget {
       ),
       child: Column(
         children: [
-          const SizedBox(
-            height: 35,
-            width: double.maxFinite,
-            child: Padding(
-              padding: EdgeInsets.all(8.0),
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  CircleAvatar(
-                    backgroundColor: Colors.red,
+          SizedBox(
+            height: 30,
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                const SizedBox(width: 2),
+                Padding(
+                  padding: const EdgeInsets.all(5.0),
+                  child: ClipOval(
+                    child: Container(
+                      height: 15,
+                      width: 15,
+                      color: Colors.red,
+                    ),
                   ),
-                  CircleAvatar(
-                    backgroundColor: Colors.amber,
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(5.0),
+                  child: ClipOval(
+                    child: Container(
+                      height: 15,
+                      width: 15,
+                      color: Colors.amber,
+                    ),
                   ),
-                  CircleAvatar(
-                    backgroundColor: Colors.green,
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(5.0),
+                  child: ClipOval(
+                    child: Container(
+                      height: 15,
+                      width: 15,
+                      color: Colors.green,
+                    ),
                   ),
-                ],
-              ),
+                ),
+                const Spacer()
+              ],
             ),
           ),
           Expanded(
@@ -97,7 +116,7 @@ class BuildAboutMeTerminal extends StatelessWidget {
                           GestureDetector(
                             // onTap: _launchMainUrl,
                             child: Text(
-                              '"the.sanskar.sh@gmail.com",',
+                              '"Mail",',
                               style: Theme.of(context)
                                   .textTheme
                                   .displaySmall!

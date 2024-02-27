@@ -36,8 +36,8 @@ class MyTheme {
         fontSize: 20,
       ),
       displaySmall: GoogleFonts.ubuntuMono(
-        fontWeight: FontWeight.w400,
-        fontSize: 20,
+        fontWeight: FontWeight.w100,
+        fontSize: 18,
       ),
     );
   }

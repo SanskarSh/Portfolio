@@ -7,10 +7,14 @@ class ErrorScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Todo: Implement ErrorScreen
-    return const Placeholder(
-      child: Center(
-        child: Text("404"),
+    return Scaffold(
+      body: Center(
+        child: Text(
+          "404",
+          style: Theme.of(context).textTheme.displayLarge!.copyWith(
+                color: Theme.of(context).colorScheme.primary,
+              ),
+        ),
       ),
     );
   }

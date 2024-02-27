@@ -6,7 +6,7 @@ class SettingsController extends ChangeNotifier {
 
   final SettingService _settingService;
 
-late ThemeMode _themeMode;
+  late ThemeMode _themeMode;
 
   ThemeMode get themeMode => _themeMode;
 

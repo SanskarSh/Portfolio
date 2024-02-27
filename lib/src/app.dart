@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:portfolio/src/features/error/error_screen.dart';
-import 'package:portfolio/src/features/home/screen/home_screen.dart';
+import 'package:portfolio/src/features/home/wrapper/home_wrapper.dart';
 import 'package:portfolio/src/settings/theme/settings_controller.dart';
 import 'package:portfolio/src/settings/theme/thene.dart';
 
@@ -38,8 +38,8 @@ class MyApp extends StatelessWidget {
               settings: settings,
               builder: (BuildContext context) {
                 switch (settings.name) {
-                  case HomeScreen.routeName:
-                    return HomeScreen(
+                  case HomeWrapper.routeName:
+                    return HomeWrapper(
                       controller: controller,
                     );
                   default:
